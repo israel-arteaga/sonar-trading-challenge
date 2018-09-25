@@ -16,16 +16,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TradesControllerTest {
+public class LocalTradesControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void displayLatestTrades() throws Exception {
 
-        this.mockMvc.perform(get("/icoin/trades/5"))
+        this.mockMvc.perform(get("/icoin/trades/local/5/2/2"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.payload").isNotEmpty())
-                .andExpect(jsonPath("$.payload[0].book").value("btc_mxn"));
+                .andExpect(jsonPath("$.payload[0].maker_side").value("nothing"))
+                .andExpect(jsonPath("$.payload[0].amount").value("0"));
     }
 }

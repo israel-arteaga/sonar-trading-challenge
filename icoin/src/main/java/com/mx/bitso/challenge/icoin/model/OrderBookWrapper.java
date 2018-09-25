@@ -2,11 +2,11 @@ package com.mx.bitso.challenge.icoin.model;
 
 import java.util.List;
 
-public class TradeWrapper {
+public class OrderBookWrapper {
     private String success;
-    private List<Trade> payload;
+    private OrderBook payload;
 
-    public TradeWrapper() {
+    public OrderBookWrapper() {
     }
 
     public String getSuccess() {
@@ -17,11 +17,11 @@ public class TradeWrapper {
         this.success = success;
     }
 
-    public List<Trade> getPayload() {
+    public OrderBook getPayload() {
         return payload;
     }
 
-    public void setPayload(List<Trade> payload) {
+    public void setPayload(OrderBook payload) {
         this.payload = payload;
     }
 }

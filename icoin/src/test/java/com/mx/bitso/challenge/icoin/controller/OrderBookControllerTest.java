@@ -16,16 +16,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TradesControllerTest {
+public class OrderBookControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void displayLatestTrades() throws Exception {
+    public void displayNBestAsksAndTrades() throws Exception {
 
-        this.mockMvc.perform(get("/icoin/trades"))
+        this.mockMvc.perform(get("/icoin/orderbook/5"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.payload").isNotEmpty())
-                .andExpect(jsonPath("$.payload[0].book").value("btc_mxn"));
+                .andExpect(jsonPath("$.payload.updated_at").isNotEmpty())
+                .andExpect(jsonPath("$.payload.sequence").isNotEmpty())
+                .andExpect(jsonPath("$.payload.bids[0].book").value("btc_mxn"))
+                .andExpect(jsonPath("$.payload.bids[0].price").isNotEmpty())
+                .andExpect(jsonPath("$.payload.bids[0].amount").isNotEmpty())
+                .andExpect(jsonPath("$.payload.asks[0].book").value("btc_mxn"))
+                .andExpect(jsonPath("$.payload.asks[0].price").isNotEmpty())
+                .andExpect(jsonPath("$.payload.asks[0].amount").isNotEmpty());
+
     }
 }

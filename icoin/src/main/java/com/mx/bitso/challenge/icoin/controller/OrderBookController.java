@@ -1,24 +1,23 @@
 package com.mx.bitso.challenge.icoin.controller;
 
-import com.mx.bitso.challenge.icoin.model.TradeWrapper;
-import com.mx.bitso.challenge.icoin.service.TradesService;
+import com.mx.bitso.challenge.icoin.model.OrderBookWrapper;
+import com.mx.bitso.challenge.icoin.service.OrderBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/icoin")
-public class TradesController {
+public class OrderBookController {
 
     @Autowired
-    TradesService tradesService;
+    OrderBookService orderBookService;
 
-    @RequestMapping(value = "/trades", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public TradeWrapper getLatestTrades() throws Exception {
+    @RequestMapping(value = "/orderbook/{n}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public OrderBookWrapper getNBestAsksAndBids(@PathVariable("n") String n) throws Exception {
 
-        return tradesService.getLatestTrades();
+        return orderBookService.getBestAsksAndBids(Integer.valueOf(n));
     }
 
 

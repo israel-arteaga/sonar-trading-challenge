@@ -23,7 +23,7 @@ public class TradesControllerTest {
     @Test
     public void displayLatestTrades() throws Exception {
 
-        this.mockMvc.perform(get("/icoin/trades"))
+        this.mockMvc.perform(get("/icoin/trades/5"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.payload").isNotEmpty())
                 .andExpect(jsonPath("$.payload[0].book").value("btc_mxn"));

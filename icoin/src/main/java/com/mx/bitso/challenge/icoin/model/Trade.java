@@ -58,4 +58,14 @@ public class Trade {
     public void setTid(Long tid) {
         this.tid = tid;
     }
+
+    @Override
+    public String toString() {
+        return "book: "+ book +
+                " created_at: " + created_at +
+                " amount: "+ amount +
+                " maker_side: " + maker_side +
+                " price: "+ price +
+                " tid: " + tid;
+    }
 }
