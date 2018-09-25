@@ -1,0 +1,9 @@
+<p>
+  Local Trades
+</p>
+<ul *ngIf="localTrades[1] else noData">
+  <li *ngFor="let trade of localTrades[1]">
+    <p>[tid: {{trade.tid}}, amount: {{trade.amount}}, book: {{trade.book}}, marker side: {{trade.maker_side}}, price:{{trade.price}}, created at: {{trade.created_at}} ]</p>
+  </li>
+</ul>
+<ng-template #noData>No Data Available</ng-template>

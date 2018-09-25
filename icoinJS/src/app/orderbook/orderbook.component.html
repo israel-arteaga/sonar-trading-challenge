@@ -1,0 +1,24 @@
+<p>
+  Best Asks and Bids
+</p>
+
+<p>
+  Asks
+</p>
+<ul *ngIf="bestAskAndBids[1] else noDataAsks">
+  <li *ngFor="let ask of bestAskAndBids[1].asks">
+    <p>[book: {{ask.book}}, price:{{ask.price}}, amount: {{ask.amount}} ]</p>
+  </li>
+</ul>
+<ng-template #noDataAsks>No Data Available</ng-template>
+
+<p>
+  Bids
+</p>
+<ul *ngIf="bestAskAndBids[1] else noDataBids">
+  <li *ngFor="let bid of bestAskAndBids[1].bids">
+    <p>[book: {{bid.book}}, price:{{bid.price}}, amount: {{bid.amount}} ]</p>
+  </li>
+</ul>
+<ng-template #noDataBids>No Data Available</ng-template>
+
